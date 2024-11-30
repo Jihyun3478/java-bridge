@@ -33,13 +33,16 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(MapResponse mapResponse) {
+    public static void printMap(MapResponse response) {
+        String O = "O";
+        String X = response.lastTryResult() ? " " : "X";
+
         System.out.print("[ ");
-        List<String> resultUp = mapResponse.getBridge().stream().map(direction -> {
+        List<String> resultUp = response.getBridge().stream().map(direction -> {
                 if(Objects.equals(direction, "U")) {
-                    return "O";
+                    return O;
                 }
-                return "X";
+                return X;
             }
         ).collect(Collectors.toList());
         System.out.print(String.join(" | ", resultUp));
@@ -47,11 +50,11 @@ public class OutputView {
 
         System.out.print("[ ");
 
-        List<String> resultDown = mapResponse.getBridge().stream().map(direction -> {
+        List<String> resultDown = response.getBridge().stream().map(direction -> {
                 if(Objects.equals(direction, "D")) {
-                    return "O";
+                    return O;
                 }
-                return "X";
+                return X;
             }
         ).collect(Collectors.toList());
         System.out.print(String.join(" | ", resultDown));
@@ -65,10 +68,14 @@ public class OutputView {
      */
     public static void printResult(ResultResponse result) {
         System.out.println("게임 성공 여부: " + (result.isSuccess() ? "성공" : "실패"));
-        System.out.print("총 시도한 횟수: " + result.getTryCount());
+        System.out.println("총 시도한 횟수: " + result.getTryCount());
     }
 
     public static void printErrorMessage(Exception e) {
         System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+    }
+
+    public static void finalResult() {
+        System.out.println("최종 게임 결과");
     }
 }

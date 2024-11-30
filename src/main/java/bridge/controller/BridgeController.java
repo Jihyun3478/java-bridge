@@ -80,6 +80,8 @@ public class BridgeController {
     }
 
     private void finish() {
+        OutputView.finalResult();
+        OutputView.printMap(bridgeGame.map());
         OutputView.printResult(bridgeGame.result());
     }
 }

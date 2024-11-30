@@ -1,7 +1,6 @@
 package bridge.service;
 
 import java.util.List;
-import java.util.Objects;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.Player;
@@ -18,6 +17,7 @@ public class BridgeGame {
 
     private final Player player = new Player();
     private List<String> bridge;
+    private int retryCount = 1;
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void setUp(BridgeSizeRequest request) {
@@ -48,9 +48,10 @@ public class BridgeGame {
      */
     public void retrySetUp() {
         player.setUp();
+        retryCount++;
     }
 
     public ResultResponse result() {
-        return ResultResponse.of(player, bridge);
+        return ResultResponse.of(player, bridge, retryCount);
     }
 }

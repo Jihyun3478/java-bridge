@@ -16,16 +16,8 @@ class PlayerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);//아래칸으로 고정
         List<String> bridge = bridgeMaker.makeBridge(20);
 
-        player.move("U", bridge);
-        player.move("D", bridge);
-    }
-
-    @Test
-    void 입력한_문자가_잘못된_경우_예외를_반환한다() {
-        Player player = new Player();
-        BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);//아래칸으로 고정
-        List<String> bridge = bridgeMaker.makeBridge(20);
-        assertThatThrownBy(() -> player.move("J", bridge)).isInstanceOf(IllegalArgumentException.class);
+        player.move(true, bridge);
+        player.move(false, bridge);
     }
 
     @Test
@@ -33,8 +25,8 @@ class PlayerTest {
         Player player = new Player();
         BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);//아래칸으로 고정
         List<String> bridge = bridgeMaker.makeBridge(20);
-        assertThat(player.move("U", bridge)).isFalse();
-        assertThat(player.move("D", bridge)).isTrue();
+        assertThat(player.move(true, bridge)).isFalse();
+        assertThat(player.move(false, bridge)).isTrue();
         assertThat(player.getPosition()).isEqualTo(1);
     }
 

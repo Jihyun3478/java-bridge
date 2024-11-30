@@ -5,7 +5,6 @@ import java.util.Objects;
 
 public class Player {
     private int position = 0;
-    private int tryCount = 0;
     private boolean lastTryResult;
 
     public Player() {
@@ -15,9 +14,7 @@ public class Player {
         this.position = position;
     }
 
-    // 0:Down, 1:Up
     public boolean move(boolean moving, List<String> bridge) {
-        tryCount++;
         if (moving) {
             boolean resultUp = Objects.equals(bridge.get(position), "U");
             if (resultUp) {
@@ -36,10 +33,6 @@ public class Player {
 
     public int getPosition() {
         return position;
-    }
-
-    public int getTryCount() {
-        return tryCount;
     }
 
     public boolean lastTryResult() {

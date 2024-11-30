@@ -22,7 +22,7 @@ public class ResultResponse {
         return tryCount;
     }
 
-    public static ResultResponse of(Player player, List<String> bridge) {
-        return new ResultResponse(player.isFinish(bridge), player.getTryCount());
+    public static ResultResponse of(Player player, List<String> bridge, int retryCount) {
+        return new ResultResponse(player.isFinish(bridge), retryCount);
     }
 }

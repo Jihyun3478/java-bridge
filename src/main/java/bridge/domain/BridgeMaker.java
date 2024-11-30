@@ -21,11 +21,18 @@ public class BridgeMaker {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
+        validateSize(size);
         List<String> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
             result.add(generate == 0 ? "D" : "U");
         }
         return result;
+    }
+
+    private void validateSize(int size) {
+        if (size <= 0 || size > 20) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 20 사이의 수를 입력해야 합니다.");
+        }
     }
 }
