@@ -17,7 +17,7 @@ public class BridgeGame {
 
     private final Player player = new Player();
     private List<String> bridge;
-    private int retryCount = 1;
+    private int tryCount = 1;
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void setUp(BridgeSizeRequest request) {
@@ -48,10 +48,10 @@ public class BridgeGame {
      */
     public void retrySetUp() {
         player.setUp();
-        retryCount++;
+        tryCount++;
     }
 
     public ResultResponse result() {
-        return ResultResponse.of(player, bridge, retryCount);
+        return ResultResponse.of(player, bridge, tryCount);
     }
 }
