@@ -19,7 +19,7 @@ public class BridgeController {
             OutputView.printMap(bridgeGame.map());
             if(!result) {
                 OutputView.inputRetry();
-                if(bridgeGame.isFinish(InputView.readGameCommand())) {
+                if(InputView.readGameCommand().getRestart()) {
                     break;
                 } else {
                     bridgeGame.retrySetUp();

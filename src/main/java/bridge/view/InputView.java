@@ -1,5 +1,8 @@
 package bridge.view;
 
+import bridge.dto.BridgeSizeRequest;
+import bridge.dto.MovingRequest;
+import bridge.dto.RestartRequest;
 import camp.nextstep.edu.missionutils.Console;
 
 /**
@@ -10,21 +13,21 @@ public class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    public static int readBridgeSize() {
-        return Integer.parseInt(Console.readLine());
+    public static BridgeSizeRequest readBridgeSize() {
+        return BridgeSizeRequest.from(Console.readLine());
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    public static String readMoving() {
-        return Console.readLine();
+    public static MovingRequest readMoving() {
+        return MovingRequest.from(Console.readLine());
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    public static String readGameCommand() {
-        return Console.readLine();
+    public static RestartRequest readGameCommand() {
+        return RestartRequest.from(Console.readLine());
     }
 }

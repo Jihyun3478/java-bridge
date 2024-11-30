@@ -16,9 +16,9 @@ public class Player {
     }
 
     // 0:Down, 1:Up
-    public boolean move(String input, List<String> bridge) {
+    public boolean move(boolean moving, List<String> bridge) {
         tryCount++;
-        if (input.equals("U")) {
+        if (moving) {
             boolean resultUp = Objects.equals(bridge.get(position), "U");
             if (resultUp) {
                 position++;
@@ -26,15 +26,12 @@ public class Player {
             lastTryResult = resultUp;
             return lastTryResult;
         }
-        if (input.equals("D")) {
-            boolean resultDown = Objects.equals(bridge.get(position), "D");
-            if (resultDown) {
-                position++;
-            }
-            lastTryResult = resultDown;
-            return lastTryResult;
+        boolean resultDown = Objects.equals(bridge.get(position), "D");
+        if (resultDown) {
+            position++;
         }
-        throw new IllegalArgumentException();
+        lastTryResult = resultDown;
+        return lastTryResult;
     }
 
     public int getPosition() {
