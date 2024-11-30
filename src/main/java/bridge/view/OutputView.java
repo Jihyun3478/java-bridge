@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import bridge.dto.MapResponse;
 import bridge.dto.ResultResponse;
 
 /**
@@ -32,28 +33,28 @@ public class OutputView {
      * <p>
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    public static void printMap(List<String> map) {
+    public static void printMap(MapResponse mapResponse) {
         System.out.print("[ ");
-        List<String> resultUp = map.stream().map(direction -> {
+        List<String> resultUp = mapResponse.getBridge().stream().map(direction -> {
                 if(Objects.equals(direction, "U")) {
                     return "O";
                 }
                 return "X";
             }
         ).collect(Collectors.toList());
-        System.out.println(String.join(" | ", resultUp));
+        System.out.print(String.join(" | ", resultUp));
         System.out.println(" ]");
 
         System.out.print("[ ");
 
-        List<String> resultDown = map.stream().map(direction -> {
+        List<String> resultDown = mapResponse.getBridge().stream().map(direction -> {
                 if(Objects.equals(direction, "D")) {
                     return "O";
                 }
                 return "X";
             }
         ).collect(Collectors.toList());
-        System.out.println(String.join(" | ", resultDown));
+        System.out.print(String.join(" | ", resultDown));
         System.out.println(" ]");
     }
 
@@ -63,7 +64,7 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printResult(ResultResponse result) {
-        System.out.print("게임 성공 여부: " + (result.isSuccess() ? "성공" : "실패"));
+        System.out.println("게임 성공 여부: " + (result.isSuccess() ? "성공" : "실패"));
         System.out.print("총 시도한 횟수: " + result.getTryCount());
     }
 }

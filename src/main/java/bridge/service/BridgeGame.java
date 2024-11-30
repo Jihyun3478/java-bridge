@@ -1,10 +1,12 @@
 package bridge.service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import bridge.domain.BridgeMaker;
 import bridge.domain.Player;
+import bridge.dto.MapResponse;
 import bridge.dto.ResultResponse;
 import bridge.util.BridgeRandomNumberGenerator;
 
@@ -34,8 +36,8 @@ public class BridgeGame {
         return player.move(input, bridge);
     }
 
-    public List<String> map() {
-        return bridge;
+    public MapResponse map() {
+        return MapResponse.of(bridge, player);
     }
 
     public boolean isFinish(String input) {

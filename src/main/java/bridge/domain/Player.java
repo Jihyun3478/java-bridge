@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Player {
     private int position = 0;
     private int tryCount = 0;
+    private boolean lastTryResult;
 
     public Player() {
     }
@@ -18,16 +19,20 @@ public class Player {
     public boolean move(String input, List<String> bridge) {
         tryCount++;
         if (input.equals("U")) {
-            if (Objects.equals(bridge.get(position), "U")) {
+            boolean resultUp = Objects.equals(bridge.get(position), "U");
+            if (resultUp) {
                 position++;
             }
-            return Objects.equals(bridge.get(position), "U");
+            lastTryResult = resultUp;
+            return lastTryResult;
         }
         if (input.equals("D")) {
-            if (Objects.equals(bridge.get(position), "D")) {
+            boolean resultDown = Objects.equals(bridge.get(position), "D");
+            if (resultDown) {
                 position++;
             }
-            return Objects.equals(bridge.get(position), "D");
+            lastTryResult = resultDown;
+            return lastTryResult;
         }
         throw new IllegalArgumentException();
     }
@@ -36,15 +41,19 @@ public class Player {
         return position;
     }
 
+    public int getTryCount() {
+        return tryCount;
+    }
+
+    public boolean lastTryResult() {
+        return lastTryResult;
+    }
+
     public boolean isFinish(List<String> bridge) {
         return position == bridge.size();
     }
 
     public void setUp() {
         position = 0;
-    }
-
-    public int getTryCount() {
-        return tryCount;
     }
 }
