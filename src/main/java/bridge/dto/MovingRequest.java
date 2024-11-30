@@ -5,6 +5,9 @@ import static bridge.exception.ExceptionMessage.*;
 import java.util.Objects;
 
 public class MovingRequest {
+    private static final String UP = "U";
+    private static final String DOWN = "D";
+
     private final boolean moving;
 
     public MovingRequest(boolean moving) {
@@ -13,13 +16,13 @@ public class MovingRequest {
 
     // TODO : enum화해서 겹치는 로직 간소화하고 예외메시지 유연하게 만들기.
     public static MovingRequest from(String input) {
-        if (Objects.equals(input, "U")) {
+        if (Objects.equals(input, UP)) {
             return new MovingRequest(true);
         }
-        if (Objects.equals(input, "D")) {
+        if (Objects.equals(input, DOWN)) {
             return new MovingRequest(false);
         }
-        throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage("U", "D"));
+        throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage(UP, DOWN));
     }
 
     public boolean getMoving() {

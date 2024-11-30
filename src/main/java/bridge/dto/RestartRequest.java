@@ -5,6 +5,9 @@ import static bridge.exception.ExceptionMessage.*;
 import java.util.Objects;
 
 public class RestartRequest {
+    private static final String RESTART = "R";
+    private static final String QUIT = "Q";
+
     private final boolean restart;
 
     public RestartRequest(boolean restart) {
@@ -13,13 +16,13 @@ public class RestartRequest {
 
     // TODO : enum화해서 겹치는 로직 간소화하고 예외메시지 유연하게 만들기.
     public static RestartRequest from(String input) {
-        if (Objects.equals(input, "Q")) {
+        if (Objects.equals(input, QUIT)) {
             return new RestartRequest(true);
         }
-        if (Objects.equals(input, "R")) {
+        if (Objects.equals(input, RESTART)) {
             return new RestartRequest(false);
         }
-        throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage("R", "Q"));
+        throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage(RESTART, QUIT));
     }
 
     public boolean getRestart() {
