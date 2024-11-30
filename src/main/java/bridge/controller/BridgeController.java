@@ -15,12 +15,14 @@ public class BridgeController {
 
         while(bridgeGame.isPlaying()) {
             OutputView.inputMoveDirection();
-            if(!bridgeGame.move(InputView.readMoving())) {
+            boolean result = bridgeGame.move(InputView.readMoving());
+            OutputView.printMap(bridgeGame.map());
+            if(!result) {
                 OutputView.inputRetry();
                 if(bridgeGame.isFinish(InputView.readGameCommand())) {
                     break;
                 } else {
-                    bridgeGame.retry();
+                    bridgeGame.retrySetUp();
                 }
             }
         }
