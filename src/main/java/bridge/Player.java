@@ -1,18 +1,33 @@
 package bridge;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.function.IntPredicate;
+
 public class Player {
-    private final int position = 0;
+    private int position = 0;
 
     public Player() {
     }
 
-    public void move(String input) {
+    // 0:Down, 1:Up
+    public boolean move(String input, List<String> bridge) {
         if (input.equals("U")) {
-            return;
+            if (Objects.equals(bridge.get(position), "U")) {
+                position++;
+            }
+            return Objects.equals(bridge.get(position), "U");
         }
         if (input.equals("D")) {
-            return;
+            if (Objects.equals(bridge.get(position), "D")) {
+                position++;
+            }
+            return Objects.equals(bridge.get(position), "D");
         }
-        throw new IllegalArgumentException("");
+        throw new IllegalArgumentException();
+    }
+
+    public int getPosition() {
+        return position;
     }
 }
