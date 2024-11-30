@@ -1,6 +1,6 @@
 package bridge.dto;
 
-import camp.nextstep.edu.missionutils.Console;
+import static bridge.exception.ExceptionMessage.*;
 
 public class BridgeSizeRequest {
     private final int bridgeSize;
@@ -13,7 +13,7 @@ public class BridgeSizeRequest {
         try {
             return new BridgeSizeRequest(Integer.parseInt(input));
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자 형식이 아닙니다.");
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.getMessage());
         }
     }
 

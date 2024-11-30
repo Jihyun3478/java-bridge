@@ -39,12 +39,17 @@ public class MapResponse {
         String o = DEFAULT_O;
         String x = player.lastTryResult() ? " " : DEFAULT_X;
 
-        return bridge.stream().map(direction -> {
-                if(Objects.equals(direction, target)) {
+        List<String> result = bridge.stream().map(direction -> {
+                if (Objects.equals(direction, target)) {
                     return o;
                 }
                 return x;
             }
         ).collect(Collectors.toList());
+
+        if (player.lastTryResult()) {
+            return result.subList(0, player.getPosition());
+        }
+        return result.subList(0, player.getPosition() + 1);
     }
 }

@@ -1,5 +1,7 @@
 package bridge.dto;
 
+import static bridge.exception.ExceptionMessage.*;
+
 import java.util.Objects;
 
 public class MovingRequest {
@@ -17,7 +19,7 @@ public class MovingRequest {
         if (Objects.equals(input, "D")) {
             return new MovingRequest(false);
         }
-        throw new IllegalArgumentException("[ERROR] U 또는 D를 입력해야 합니다.");
+        throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage("U", "D"));
     }
 
     public boolean getMoving() {

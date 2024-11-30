@@ -31,8 +31,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(MapResponse response) {
-        System.out.print(OutputMessage.MAP.getMessage(String.join(" | ", response.getUpBridge())));
-        System.out.print(OutputMessage.MAP.getMessage(String.join(" | ", response.getDownBridge())));
+        System.out.println(OutputMessage.MAP.getMessage(String.join(" | ", response.getUpBridge())));
+        System.out.println(OutputMessage.MAP.getMessage(String.join(" | ", response.getDownBridge())));
     }
 
     /**
@@ -51,7 +51,7 @@ public class OutputView {
     }
 
     public static void printErrorMessage(Exception e) {
-        System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+        System.out.println(e.getMessage());
     }
 
     public static void finalResult() {

@@ -1,5 +1,7 @@
 package bridge.domain;
 
+import static bridge.exception.ExceptionMessage.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class BridgeMaker {
 
     private void validateSize(int size) {
         if (size <= 0 || size > 20) {
-            throw new IllegalArgumentException("[ERROR] 1 ~ 20 사이의 수를 입력해야 합니다.");
+            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage(1, 20));
         }
     }
 }

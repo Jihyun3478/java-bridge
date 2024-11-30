@@ -1,5 +1,7 @@
 package bridge.dto;
 
+import static bridge.exception.ExceptionMessage.*;
+
 import java.util.Objects;
 
 public class RestartRequest {
@@ -17,7 +19,7 @@ public class RestartRequest {
         if (Objects.equals(input, "R")) {
             return new RestartRequest(false);
         }
-        throw new IllegalArgumentException("[ERROR] R 또는 Q를 입력해야 합니다.");
+        throw new IllegalArgumentException(INVALID_INPUT_FORMAT.getMessage("R", "Q"));
     }
 
     public boolean getRestart() {
