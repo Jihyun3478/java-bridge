@@ -12,19 +12,19 @@ public class OutputView {
     private static final String DELIMITER = " | ";
 
     public static void start() {
-        System.out.println(START_GAME.getMessage());
+        print(START_GAME.getMessage());
     }
 
     public static void inputBridgeSize() {
-        System.out.println(INPUT_BRIDGE_SIZE.getMessage());
+        print(INPUT_BRIDGE_SIZE.getMessage());
     }
 
     public static void inputMoveDirection() {
-        System.out.println(INPUT_MOVE_DIRECTION.getMessage());
+        print(INPUT_MOVE_DIRECTION.getMessage());
     }
 
     public static void inputRetry() {
-        System.out.println(INPUT_RETRY.getMessage());
+        print(INPUT_RETRY.getMessage());
     }
 
     /**
@@ -33,8 +33,8 @@ public class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     public static void printMap(MapResponse response) {
-        System.out.println(OutputMessage.MAP.getMessage(String.join(DELIMITER, response.getUpBridge())));
-        System.out.println(OutputMessage.MAP.getMessage(String.join(DELIMITER, response.getDownBridge())));
+        print(OutputMessage.MAP.getMessage(String.join(DELIMITER, response.getUpBridge())));
+        print(OutputMessage.MAP.getMessage(String.join(DELIMITER, response.getDownBridge())));
     }
 
     /**
@@ -44,19 +44,23 @@ public class OutputView {
      */
     public static void printResult(ResultResponse result) {
         if(result.isSuccess()) {
-            System.out.println(IS_SUCCESS.getMessage(SUCCESS.getMessage()));
-            System.out.println(FINAL_TRY_COUNT.getMessage(result.getTryCount()));
+            print(IS_SUCCESS.getMessage(SUCCESS.getMessage()));
+            print(FINAL_TRY_COUNT.getMessage(result.getTryCount()));
             return;
         }
-        System.out.println(IS_SUCCESS.getMessage(FAIL.getMessage()));
-        System.out.println(FINAL_TRY_COUNT.getMessage(result.getTryCount()));
+        print(IS_SUCCESS.getMessage(FAIL.getMessage()));
+        print(FINAL_TRY_COUNT.getMessage(result.getTryCount()));
     }
 
     public static void printErrorMessage(Exception e) {
-        System.out.println(e.getMessage());
+        print(e.getMessage());
     }
 
     public static void finalResult() {
-        System.out.println(FINAL_RESULT.getMessage());
+        print(FINAL_RESULT.getMessage());
+    }
+
+    private static void print(String message) {
+        System.out.println(message);
     }
 }

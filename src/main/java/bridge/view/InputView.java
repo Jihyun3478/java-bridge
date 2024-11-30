@@ -14,20 +14,24 @@ public class InputView {
      * 다리의 길이를 입력받는다.
      */
     public static BridgeSizeRequest readBridgeSize() {
-        return BridgeSizeRequest.from(Console.readLine());
+        return BridgeSizeRequest.from(input());
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     public static MovingRequest readMoving() {
-        return MovingRequest.from(Console.readLine());
+        return MovingRequest.from(input());
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     public static RestartRequest readGameCommand() {
-        return RestartRequest.from(Console.readLine());
+        return RestartRequest.from(input());
+    }
+
+    private static String input() {
+        return Console.readLine();
     }
 }
