@@ -1,7 +1,6 @@
 package bridge.dto;
 
-import java.util.List;
-
+import bridge.domain.Bridge;
 import bridge.domain.Player;
 
 public class ResultResponse {
@@ -22,7 +21,7 @@ public class ResultResponse {
         return tryCount;
     }
 
-    public static ResultResponse of(Player player, List<String> bridge, int retryCount) {
+    public static ResultResponse of(Player player, Bridge bridge, int retryCount) {
         return new ResultResponse(player.isFinish(bridge), retryCount);
     }
 }

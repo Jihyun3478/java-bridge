@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import bridge.domain.Bridge;
 import bridge.domain.Player;
 
 public class MapResponse {
@@ -29,24 +30,25 @@ public class MapResponse {
         return downBridge;
     }
 
-    public static MapResponse of(List<String> bridge, Player player) {
+    public static MapResponse of(Bridge bridge, Player player) {
         List<String> resultUp = convertBridge(bridge, player, UP);
         List<String> resultDown = convertBridge(bridge, player, DOWN);
 
         return new MapResponse(resultUp, resultDown);
     }
 
-    private static List<String> convertBridge(List<String> bridge, Player player, String target) {
+    private static List<String> convertBridge(Bridge bridge, Player player, String target) {
         String o = DEFAULT_O;
         String x = player.lastTryResult() ? PRIVATE_X : DEFAULT_X;
 
-        List<String> result = bridge.stream().map(direction -> {
-                if (Objects.equals(direction, target)) {
-                    return o;
+        List<String> result = bridge.getList().stream()
+            .map(direction -> {
+                    if (Objects.equals(direction, target)) {
+                        return o;
+                    }
+                    return x;
                 }
-                return x;
-            }
-        ).collect(Collectors.toList());
+            ).collect(Collectors.toList());
 
         if (player.lastTryResult()) {
             return result.subList(0, player.getPosition());

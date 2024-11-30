@@ -2,9 +2,6 @@ package bridge.domain;
 
 import static bridge.constant.BridgeConstant.*;
 
-import java.util.List;
-import java.util.Objects;
-
 public class Player {
     private static final int DEFAULT_POSITION = 0;
     private int position = DEFAULT_POSITION;
@@ -17,16 +14,16 @@ public class Player {
         this.position = position;
     }
 
-    public boolean move(boolean moving, List<String> bridge) {
+    public boolean move(boolean moving, Bridge bridge) {
         if (moving) {
-            boolean resultUp = Objects.equals(bridge.get(position), UP);
+            boolean resultUp = bridge.equalsTo(position, UP);
             if (resultUp) {
                 position++;
             }
             lastTryResult = resultUp;
             return lastTryResult;
         }
-        boolean resultDown = Objects.equals(bridge.get(position), DOWN);
+        boolean resultDown = bridge.equalsTo(position, DOWN);
         if (resultDown) {
             position++;
         }
@@ -42,8 +39,8 @@ public class Player {
         return lastTryResult;
     }
 
-    public boolean isFinish(List<String> bridge) {
-        return position == bridge.size();
+    public boolean isFinish(Bridge bridge) {
+        return position == bridge.getSize();
     }
 
     public void setUp() {
