@@ -67,4 +67,8 @@ public class OutputView {
         System.out.println("게임 성공 여부: " + (result.isSuccess() ? "성공" : "실패"));
         System.out.print("총 시도한 횟수: " + result.getTryCount());
     }
+
+    public static void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage() + " 다시 입력해 주세요.");
+    }
 }
