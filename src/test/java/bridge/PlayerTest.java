@@ -34,4 +34,22 @@ class PlayerTest {
         assertThat(player.move("D", bridge)).isTrue();
         assertThat(player.getPosition()).isEqualTo(1);
     }
+
+    @Test
+    void 다리를_끝까지_건너면_종료한다() {
+        Player player = new Player(20);
+        BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);//아래칸으로 고정
+        List<String> bridge = bridgeMaker.makeBridge(20);
+
+        assertThat(player.isFinish(bridge)).isTrue();
+    }
+
+    @Test
+    void 다리를_끝까지_건너지_않으면_종료하지_않는다() {
+        Player player = new Player(10);
+        BridgeMaker bridgeMaker = new BridgeMaker(() -> 0);//아래칸으로 고정
+        List<String> bridge = bridgeMaker.makeBridge(20);
+
+        assertThat(player.isFinish(bridge)).isFalse();
+    }
 }

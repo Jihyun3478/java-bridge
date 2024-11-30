@@ -10,6 +10,10 @@ public class Player {
     public Player() {
     }
 
+    public Player(int position) {
+        this.position = position;
+    }
+
     // 0:Down, 1:Up
     public boolean move(String input, List<String> bridge) {
         if (input.equals("U")) {
@@ -29,5 +33,9 @@ public class Player {
 
     public int getPosition() {
         return position;
+    }
+
+    public boolean isFinish(List<String> bridge) {
+        return position == bridge.size();
     }
 }
