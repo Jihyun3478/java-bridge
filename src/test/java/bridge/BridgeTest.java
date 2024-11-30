@@ -17,4 +17,12 @@ class BridgeTest {
             .findAny();
         assertThat(result.isPresent()).isFalse();
     }
+
+    @Test
+    void 다리_길이가_올바르게_생성되는지_확인한다() {
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+        List<String> bridge = bridgeMaker.makeBridge(20);
+
+        assertThat(bridge.size()).isEqualTo(20);
+    }
 }
