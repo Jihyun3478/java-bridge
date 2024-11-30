@@ -1,5 +1,6 @@
 package bridge.domain;
 
+import static bridge.constant.BridgeConstant.*;
 import static bridge.exception.ExceptionMessage.*;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
+    // TODO : 리팩토링 하기
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
@@ -27,14 +29,19 @@ public class BridgeMaker {
         List<String> result = new ArrayList<>();
         for (int i = 0; i < size; i++) {
             int generate = bridgeNumberGenerator.generate();
-            result.add(generate == 0 ? "D" : "U");
+            if(generate == 0) {
+                result.add(DOWN);
+            }
+            if(generate != 0) {
+                result.add(UP);
+            }
         }
         return result;
     }
 
     private void validateSize(int size) {
-        if (size <= 0 || size > 20) {
-            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage(1, 20));
+        if (size < MINIMUM_BRIDGE_SIZE || size > MAXIMUM_BRIDGE_SIZE) {
+            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage(MINIMUM_BRIDGE_SIZE, MAXIMUM_BRIDGE_SIZE));
         }
     }
 }

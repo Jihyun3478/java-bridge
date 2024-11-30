@@ -1,5 +1,7 @@
 package bridge.dto;
 
+import static bridge.constant.BridgeConstant.*;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -9,8 +11,7 @@ import bridge.domain.Player;
 public class MapResponse {
     private static final String DEFAULT_O = "O";
     private static final String DEFAULT_X = "X";
-    private static final String UP_BRIDGE = "U";
-    private static final String DOWN_BRIDGE = "D";
+    private static final String PRIVATE_X = " ";
 
     private final List<String> upBridge;
     private final List<String> downBridge;
@@ -29,15 +30,15 @@ public class MapResponse {
     }
 
     public static MapResponse of(List<String> bridge, Player player) {
-        List<String> resultUp = convertBridge(bridge, player, UP_BRIDGE);
-        List<String> resultDown = convertBridge(bridge, player, DOWN_BRIDGE);
+        List<String> resultUp = convertBridge(bridge, player, UP);
+        List<String> resultDown = convertBridge(bridge, player, DOWN);
 
         return new MapResponse(resultUp, resultDown);
     }
 
     private static List<String> convertBridge(List<String> bridge, Player player, String target) {
         String o = DEFAULT_O;
-        String x = player.lastTryResult() ? " " : DEFAULT_X;
+        String x = player.lastTryResult() ? PRIVATE_X : DEFAULT_X;
 
         List<String> result = bridge.stream().map(direction -> {
                 if (Objects.equals(direction, target)) {

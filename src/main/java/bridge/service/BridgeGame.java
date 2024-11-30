@@ -14,10 +14,11 @@ import bridge.util.BridgeRandomNumberGenerator;
  * 다리 건너기 게임을 관리하는 클래스
  */
 public class BridgeGame {
+    private static final int DEFAULT_TRY_COUNT = 1;
 
     private final Player player = new Player();
     private List<String> bridge;
-    private int tryCount = 1;
+    private int tryCount = DEFAULT_TRY_COUNT;
     private final BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
     public void setUp(BridgeSizeRequest request) {

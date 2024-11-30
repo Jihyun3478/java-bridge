@@ -1,13 +1,11 @@
 package bridge.dto;
 
+import static bridge.constant.BridgeConstant.*;
 import static bridge.exception.ExceptionMessage.*;
 
 import java.util.Objects;
 
 public class RestartRequest {
-    private static final String RESTART = "R";
-    private static final String QUIT = "Q";
-
     private final boolean restart;
 
     public RestartRequest(boolean restart) {

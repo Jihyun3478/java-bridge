@@ -1,13 +1,11 @@
 package bridge.dto;
 
+import static bridge.constant.BridgeConstant.*;
 import static bridge.exception.ExceptionMessage.*;
 
 import java.util.Objects;
 
 public class MovingRequest {
-    private static final String UP = "U";
-    private static final String DOWN = "D";
-
     private final boolean moving;
 
     public MovingRequest(boolean moving) {
