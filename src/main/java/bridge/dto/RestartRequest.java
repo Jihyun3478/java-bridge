@@ -12,7 +12,6 @@ public class RestartRequest {
         this.restart = restart;
     }
 
-    // TODO : enum화해서 겹치는 로직 간소화하고 예외메시지 유연하게 만들기.
     public static RestartRequest from(String input) {
         if (Objects.equals(input, QUIT)) {
             return new RestartRequest(true);

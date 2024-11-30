@@ -3,8 +3,9 @@ package bridge.domain;
 import static bridge.constant.BridgeConstant.*;
 import static bridge.exception.ExceptionMessage.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import bridge.util.BridgeNumberGenerator;
 
@@ -19,29 +20,29 @@ public class BridgeMaker {
         this.bridgeNumberGenerator = bridgeNumberGenerator;
     }
 
-    // TODO : 리팩토링 하기
     /**
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     public List<String> makeBridge(int size) {
         validateSize(size);
-        List<String> result = new ArrayList<>();
-        for (int i = 0; i < size; i++) {
-            int generate = bridgeNumberGenerator.generate();
-            if(generate == 0) {
-                result.add(DOWN);
-            }
-            if(generate != 0) {
-                result.add(UP);
-            }
-        }
-        return result;
+        return IntStream.range(0, size)
+            .map(i -> bridgeNumberGenerator.generate())
+            .boxed()
+            .map(this::convertToString)
+            .collect(Collectors.toList());
     }
 
     private void validateSize(int size) {
         if (size < MINIMUM_BRIDGE_SIZE || size > MAXIMUM_BRIDGE_SIZE) {
             throw new IllegalArgumentException(OUT_OF_RANGE.getMessage(MINIMUM_BRIDGE_SIZE, MAXIMUM_BRIDGE_SIZE));
         }
+    }
+
+    private String convertToString(int bridgeNumber) {
+        if (bridgeNumber == 0) {
+            return DOWN;
+        }
+        return UP;
     }
 }

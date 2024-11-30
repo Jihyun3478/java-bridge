@@ -12,7 +12,6 @@ public class MovingRequest {
         this.moving = moving;
     }
 
-    // TODO : enum화해서 겹치는 로직 간소화하고 예외메시지 유연하게 만들기.
     public static MovingRequest from(String input) {
         if (Objects.equals(input, UP)) {
             return new MovingRequest(true);
