@@ -14,6 +14,14 @@ public class ResultResponse {
         this.tryCount = tryCount;
     }
 
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public int getTryCount() {
+        return tryCount;
+    }
+
     public static ResultResponse of(Player player, List<String> bridge) {
         return new ResultResponse(player.isFinish(bridge), player.getTryCount());
     }
