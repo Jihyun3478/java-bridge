@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bridge.domain.BridgeMaker;
+import bridge.domain.Player;
+
 class PlayerTest {
     @Test
     void 입력한_문자에_따라_이동한다() {
